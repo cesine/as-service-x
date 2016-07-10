@@ -28,10 +28,15 @@ build/Release
 
 # Dependency directories
 node_modules
-jspm_packages
+public/components
 
 # Optional npm cache directory
 .npm
 
 # Optional REPL history
 .node_repl_history
+
+# Temp files
+.DS_Store
+~*
+*.swp
