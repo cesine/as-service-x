@@ -24,7 +24,9 @@
   "dependencies": {
     "as-token": "https://github.com/cesine/as-token-javascript.git",
     "config": "^3.2.4",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "passport": "^0.4.0",
+    "passport-saml": "^1.2.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",

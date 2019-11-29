@@ -1,9 +1,8 @@
 const express = require('express');
+const router = require('./routes');
 
 const service = express();
 
-service.get('/', (req, res) => {
-  res.send('hello world');
-});
+service.use(router);
 
 module.exports = service;
