@@ -40,3 +40,7 @@ public/components
 .DS_Store
 ~*
 *.swp
+
+# Config
+config/local.js
+config/local.json
