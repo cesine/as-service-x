@@ -1,7 +1,8 @@
-var express = require('express');
-var service = express();
+const express = require('express');
 
-service.get('/', function (req, res) {
+const service = express();
+
+service.get('/', (req, res) => {
   res.send('hello world');
 });
 
