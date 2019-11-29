@@ -1,0 +1,28 @@
+{
+  "name": "as-service-x",
+  "version": "1.0.0",
+  "description": "Authenticated Systems Workshop - Sample Service",
+  "main": "config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cesine/as-service-x.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cesine/as-service-x/issues"
+  },
+  "homepage": "https://github.com/cesine/as-service-x#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "mocha": "^6.2.2"
+  }
+}
