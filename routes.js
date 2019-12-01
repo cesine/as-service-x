@@ -1,7 +1,11 @@
-const { Router } = require('express');
+const config = require('config');
+const {
+  Router
+} = require('express');
 const passport = require('passport');
 const SamlStrategy = require('passport-saml').Strategy;
 
+const NAME = 'saml';
 const router = Router();
 
 router.use(passport.initialize());
@@ -10,14 +14,30 @@ router.get('/', (req, res) => {
   res.send('hello world');
 });
 
-const findByEmail = () => { 'hi@localhost'; };
+router.get('/welcome', (req, res) => {
+  res.send('welcome world');
+});
 
-passport.use('saml', new SamlStrategy({
-  path: '/login/callback',
-  entryPoint: 'https://openidp.feide.no/simplesaml/saml2/idp/SSOService.php',
-  issuer: 'passport-saml',
-},
-((profile, done) => {
+router.get('/failed', (req, res) => {
+  res.send('failed world');
+});
+
+router.post('/', (req, res) => {
+  console.log('req.path', req.path);
+  console.log('req.body', req.body);
+  console.log('req.query', req.query);
+  res.send('post root');
+});
+
+const findByEmail = (key) => {
+  console.log('findByEmail', key);
+  return {
+    username: 'gc@yopmail.com',
+    email: 'gc@yopmail.com',
+  };
+};
+
+passport.use(NAME, new SamlStrategy(config.saml, ((profile, done) => {
   findByEmail(profile.email, (err, user) => {
     if (err) {
       return done(err);
@@ -27,21 +47,23 @@ passport.use('saml', new SamlStrategy({
 })));
 
 router.post('/login/callback',
-  passport.authenticate('saml', {
-    failureRedirect: '/',
+  passport.authenticate(NAME, {
+    failureRedirect: '/failed',
     failureFlash: true,
   }),
   (req, res) => {
-    res.redirect('/');
+    res.redirect('/welcome');
   });
 
 router.get('/login',
-  passport.authenticate('saml', {
-    failureRedirect: '/',
+  passport.authenticate(NAME, {
+    failureRedirect: '/failed',
     failureFlash: true,
   }),
   (req, res) => {
-    res.redirect('/');
+    console.log('req.path', req.path);
+    console.log('req.user', req.user);
+    res.redirect('/welcome');
   });
 
 
